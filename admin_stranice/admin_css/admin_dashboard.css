@@ -1,0 +1,48 @@
+
+.container{
+    padding: 10px;
+    margin: auto !important;
+}
+
+
+@media only screen and (min-width: 992px) {
+    .container{
+        max-width: 992px;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+    .container{
+        max-width: 1200px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .grade-card{
+        flex: 0 0 15%;
+        border-radius: 10px;
+        background-color: lightblue;
+        position: relative;
+    }
+
+    .grade-link{
+        display: block;
+        position:absolute;
+        top: 0%;
+        bottom: 0%;
+        left: 0%;
+        right: 0%;
+        text-decoration: none;
+        color: black;
+        z-index: 100;
+    }
+
+    .icon-button{
+        z-index: 101;
+        position: relative;
+    }
+}
