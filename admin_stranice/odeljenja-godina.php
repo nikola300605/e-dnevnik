@@ -1,24 +1,28 @@
-<?php 
+<?php
     require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/config/config.php";
 
     if(!isset($_SESSION['adminID'])){
         header('location: ../index.php');
         exit();
-    } 
+    }
+    $razredID = (int)$_GET['razredID'];
+    $sql = "SELECT * FROM odeljenje INNER JOIN razred on odeljenje.razredID = razred.razredID WHERE odeljenje.razredID = ?";
+    $run = $conn->prepare($sql);
+    $run->bind_param('i',$razredID);
+    $run -> execute();
 
-    $sql = 'SELECT * FROM razred';
-    $run = $conn->query($sql);
-    $results = $run->fetch_all(MYSQLI_ASSOC);
+    $results = $run->get_result();
+    $results = $results->fetch_all(MYSQLI_ASSOC);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="admin_css/odeljenja-godina.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="admin_css/admin_dashboard.css">
     <title>Document</title>
-    
 </head>
 <body>
     <nav class="navbar">
@@ -29,23 +33,18 @@
             </form>
         </div>
     </nav>
-    
+
     <section>
         <div class="container">
             <?php 
                 foreach ($results as $result) :?>
-                    <div class="grade-card">
-                        <a href="odeljenja-godina.php?razredID=<?php echo $result['razredID']?>" class="grade-link"> </a>
-                        <div class="grade-num"><?php echo $result['code']?></div>
-                        <h2 class="grade-name"><?php echo $result['ime'] . ' Razred'?></h2>
-                        <div class="icon-button">
-                            <a href="all-students-class.php?razredID=<?php echo $result['razredID']?>" class="icon-link"> </a>
-                            <img src="../assets/images/group.png" alt=""> 
-                        </div>                            
+                    <div class="odeljenje-card">
+                        <a href="odeljenje-ucenici.php?odeljenjeID=<?php echo $result['razredID']?>" class="odeljenje-link"> </a>
+                        <div class="odeljenje-num"><?php echo $result['code'] . $result['int_code']?></div>
+                        <h2 class="odeljenje-name"><?php echo $result['atribut'] . " " . $result['name']?></h2>                          
                     </div>
             <?php endforeach;?>           
         </div>
     </section>
 </body>
-
 </html>
