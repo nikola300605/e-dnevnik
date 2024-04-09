@@ -82,69 +82,43 @@ body{
         right: 0%;
     }
 
-    .navbar{
-        box-shadow: 0 0 10px -1px rgba(0,0,0,.5);
-        background-color: #BF3100;
-        width: 100%;
+    .navbar-container{
+        max-width: 85%;
+        margin: auto;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         align-items: stretch;
-        padding: 0px 0px 0px 0px;
-        margin-bottom: 40px;
-        overflow: hidden;
+        justify-content: space-between;
     }
     
-
-    .logo{
-        width: 144px;
-        height: 50px;
+    header{
+        background-color: #BF3100;;
     }
-
-    .logout-wrap{
-        padding: 0px 10px 0px 0px;
-        display: block;
-    }
-
-    form{
-        height: 100%;
-    }
-
-    .log-out-button{
-        height: 100%;
-        background-color: transparent;
-        color: white;
-        padding: 10px 30px 10px 30px;
-        border: none;
-        cursor: pointer;
-        transition: all .3s ease-in;    
-    }
-    .log-out-button:hover{
-        background-color: #922C09;
-    }
-
-    .buttons-wrapper{
+    
+    .menu{
         display: flex;
-        height: 50px;
         flex-direction: row;
-        justify-content: center;
-        align-self: center;
+        /*background-color: violet !important; */
     }
-
+    
+    .logo{
+        padding: 10px 0 5px 0;
+    }
+    
     .nav-link{
-        background-color: transparent;
-        color: white;
-        font-weight: normal !important;
-        padding: 10px 30px 10px 30px;
-        border: none;
-        cursor: pointer;
-        transition: all .3s ease-in;  
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: white ;
+        font-size: 18px;
+        font-weight: 500;
+        transition: all .3s ease-in; 
+        padding: 0 20px 0 20px;
+        text-transform: capitalize;
     }
+    
     .nav-link:hover{
         background-color: #922C09;
     }
-
 }

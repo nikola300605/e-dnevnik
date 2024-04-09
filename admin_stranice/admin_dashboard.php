@@ -21,21 +21,27 @@
     
 </head>
 <body>
-    <nav class="navbar">
-        <img src="../assets/site_images/esdnevnik-logo.png" alt="Es Dnevnik Logo" class="logo">
-        <div class="buttons-wrapper">
-            <div class="nav-link" onclick="location.href='add_pages/add_students.php'"> 
-                <span>Add Students</span>
+    <header>
+        <nav>
+            <div class="navbar-container">
+                <div class="logo">
+                    <img src="/e-dnevnik/assets/site_images/esdnevnik-logo.png" alt="">
+                </div>
+                <div class="menu">
+                    <a href="# target="_self" rel="noopener noreferrer" class="nav-link">
+                        <div class="menu-div">
+                            Add student
+                        </div>
+                    </a>
+                    <a href="/e-dnevnik/sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">
+                        <div class="menu-div">
+                            Log Out
+                        </div>
+                    </a>
+                </div>
             </div>
-            <div class="logout-wrap">
-                <form action="/e-dnevnik/sign_out.php" method="post" class="log-out">
-                    <button class="log-out-button">Sign Out</button>
-                </form>
-            </div>
-            
-        </div>
-
-    </nav>
+        </nav>
+    </header>
     
     <section>
         <div class="container">
@@ -47,7 +53,7 @@
                         <h2 class="grade-name"><?php echo $result['ime'] . ' Razred'?></h2>
                         <div class="icon-button">
                             <a href="show_pages/all_students_grade.php?razredID=<?php echo $result['razredID']?>" class="icon-link"> </a>
-                            <img src="../assets/images/group.png" alt=""> 
+                            <img src="/e-dnevnik/assets/site_images/group.png" alt=""> 
                         </div>                            
                     </div>
             <?php endforeach;?>           
