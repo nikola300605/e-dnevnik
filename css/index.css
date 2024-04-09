@@ -13,7 +13,7 @@ body{
 .hero-section{
     height: 100vh;
     width: 100vw;
-    background-image: url('../assets/images/hero-slika.jpg');
+    background-image: url('../assets/site_images/hero-slika.jpg');
     background-position: 50%;
     background-size: auto;
     background-repeat: no-repeat;
@@ -43,7 +43,7 @@ body{
 
 .row{
     overflow: hidden;
-    background-image: url('../assets/images/hero-slika.jpg');
+    background-image: url('../assets/site_images/hero-slika.jpg');
     background-position: 50%;
     background-size: cover !important;
     background-repeat: no-repeat;

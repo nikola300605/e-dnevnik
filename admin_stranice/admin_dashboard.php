@@ -22,12 +22,19 @@
 </head>
 <body>
     <nav class="navbar">
-        <img src="../assets/images/esdnevnik-logo.png" alt="Es Dnevnik Logo" class="logo">
-        <div class="logout-wrap">
-            <form action="/e-dnevnik/sign_out.php" method="post" class="log-out">
-                <button class="log-out-button">Log out</button>
-            </form>
+        <img src="../assets/site_images/esdnevnik-logo.png" alt="Es Dnevnik Logo" class="logo">
+        <div class="buttons-wrapper">
+            <div class="nav-link" onclick="location.href='add_pages/add_students.php'"> 
+                <span>Add Students</span>
+            </div>
+            <div class="logout-wrap">
+                <form action="/e-dnevnik/sign_out.php" method="post" class="log-out">
+                    <button class="log-out-button">Sign Out</button>
+                </form>
+            </div>
+            
         </div>
+
     </nav>
     
     <section>
@@ -35,11 +42,11 @@
             <?php 
                 foreach ($results as $result) :?>
                     <div class="grade-card">
-                        <a href="odeljenja-godina.php?razredID=<?php echo $result['razredID']?>" class="grade-link"> </a>
+                        <a href="show_pages/odeljenja_godina.php?razredID=<?php echo $result['razredID']?>" class="grade-link"> </a>
                         <div class="grade-num"><?php echo $result['code']?></div>
                         <h2 class="grade-name"><?php echo $result['ime'] . ' Razred'?></h2>
                         <div class="icon-button">
-                            <a href="all-students-class.php?razredID=<?php echo $result['razredID']?>" class="icon-link"> </a>
+                            <a href="show_pages/all_students_grade.php?razredID=<?php echo $result['razredID']?>" class="icon-link"> </a>
                             <img src="../assets/images/group.png" alt=""> 
                         </div>                            
                     </div>
