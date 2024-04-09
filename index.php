@@ -1,5 +1,14 @@
 <?php 
-    require 'config/config.php';
+    require_once 'config/config.php';
+    if(isset($_SESSION['admin_error_message'])){
+        $err = $_SESSION['admin_error_message'];
+        $resp = true;
+        unset($_SESSION['admin_error_message']);
+    }
+    else {
+        $resp = false;
+        $err = "";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -41,13 +50,10 @@
                                         <a href="admin_login.php" class="admin-login">Admin login</a>
                                         <input type="submit" value="prijavi se" class="prijavi-dugme">
                                     </div>
-                                    <?php
-                                        if(isset($_SESSION['error_message'])){
-                                            echo  $_SESSION['error_message'];
-                                            unset($_SESSION['error_message']);
-                                            #TODO: Napraviti error message da se pokaze kad login informacije nisu tacne
-                                        }
-                                    ?>
+                                    <div class="error-box" id="error-box">
+                                        <p id="err-text"></p>
+                                    </div>
+                                   
                                 </form>                           
                         </div>
                     </div>
@@ -55,5 +61,14 @@
             </div>
         </div>
     </section>
+    <script>
+        var resp = <?php echo json_encode($resp);?> ;
+        console.log(resp);
+        if(resp == true){
+            document.getElementById('error-box').style.display="flex";
+            let err = <?php echo json_encode($err);?> ;
+            document.querySelector("#err-text").innerHTML = err; 
+        }
+    </script>
 </body>
 </html>

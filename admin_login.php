@@ -1,3 +1,16 @@
+<?php 
+    require_once 'config/config.php';
+    if(isset($_SESSION['admin_error_message'])){
+        $err = $_SESSION['admin_error_message'];
+        $resp = true;
+        unset($_SESSION['admin_error_message']);
+    }
+    else {
+        $resp = false;
+        $err = "";
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,16 +18,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
     <title>Document</title>
+
+    
 </head>
 
-<?php 
-    require_once 'config/config.php';
-    if(isset($_SESSION['error_message_admin'])){
-        echo $_SESSION['error_message_admin'];
-        unset($_SESSION['error_message_admin']);
-        #TODO: Napraviti error message da se pokaze kad login informacije nisu tacne
-    }
-?>
+
 <body>
     <section class="hero-section">
         <div class="blur-cover">
@@ -46,6 +54,10 @@
                                         <a href="index.php" class="admin-login">Login za ucenike</a>
                                         <input type="submit" value="prijavi se" class="prijavi-dugme">
                                     </div>
+
+                                    <div class="error-box" id="error-box">
+                                        <p id="err-text"></p>
+                                    </div>
                                 </form>                           
                         </div>
                     </div>
@@ -53,5 +65,16 @@
             </div>
         </div>
     </section>
+
+    <script>
+        var resp = <?php echo json_encode($resp);?> ;
+        console.log(resp);
+        if(resp == true){
+            document.getElementById('error-box').style.display="flex";
+            let err = <?php echo json_encode($err);?> ;
+            document.querySelector("#err-text").innerHTML = err; 
+        }
+    </script>
 </body>
 </html>
+
