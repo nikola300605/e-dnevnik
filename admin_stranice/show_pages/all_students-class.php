@@ -1,5 +1,6 @@
 <?php 
     require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/config/config.php";
+    require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/classes/Student.php";
 
     if(!isset($_SESSION['adminID'])){
         header('location: '. $_SERVER['DOCUMENT_ROOT'].'/e-dnevnik/index.php');
@@ -7,16 +8,11 @@
     }
     $razredID = (int) $_GET['razredID'];
     $odeljenjeId = (int)$_GET['odeljenjeID'];
-    echo $odeljenjeId . "\n";
-    echo $razredID;
-    $sql = "SELECT * FROM student WHERE razredID = ? AND odeljenjeID = ?";
-    $run = $conn->prepare($sql);
-    $run->bind_param("ii",$razredID, $odeljenjeId);
-    $run->execute();
+    //echo $razredID . " " . $odeljenjeId . " ";
+    $student = new Student();
+    $results = $student->getStudents($razredID,$odeljenjeId);
 
-    $results = $run->get_result();
-    $results = $results->fetch_all(MYSQLI_ASSOC);
-    var_dump($results);
+    //var_dump($results);
     
 ?>
 
@@ -27,34 +23,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../admin_css/admin.css">
+    <link rel="stylesheet" href="../admin_css/admin_show.css">
 </head>
 <body>
-    <nav class="navbar">
-        <img src="../../assets/site_images/esdnevnik-logo.png" alt="Es Dnevnik Logo" class="logo">
-        <div class="logout-wrap">
-            <form action="/e-dnevnik/sign_out.php" method="post" class="log-out">
-                <button class="log-out-button">Log out</button>
-            </form>
-        </div>
-    </nav>
+    <header>
+        <nav>
+            <div class="navbar-container">
+                <div class="logo">
+                    <img src="/e-dnevnik/assets/site_images/esdnevnik-logo.png" alt="">
+                </div>
+                <div class="menu">
+                    <a href="../add_pages/add_student.php?razredID=<?=$razredID?>&odeljenjeID=<?=$odeljenjeID?>" target="_self" rel="noopener noreferrer" class="nav-link">
+                        <div class="menu-div">
+                            Add student
+                        </div>
+                    </a>
+                    <a href="/e-dnevnik/sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">
+                        <div class="menu-div">
+                            Log Out
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <div class="container">
-        <?php 
-            foreach ($results as $result) :?>
-            <a href="student.php?studentID=<?php echo $result["studentID"]?>">
-                <div class="student_card">
-                    <img src="<?php if($result["photo_path"] == null){
-                        echo $_SERVER['DOCUMENT_ROOT'] . "/e-dnevnik/assets/user_images/default_user_image.png";
-                    } else {
-                        echo $_SERVER['DOCUMENT_ROOT'] . $result["photo_path"];
-                    }
-                    ?>" alt="Slika">
-                    <h2><?php echo $result["name"] . " " . $result["surname"]?></h2>
-            
-                </div>
-            </a>
-        <?php endforeach;?>
+        <div class="student-card-wrapper">
+            <?php   
+                foreach ($results as $result) :?>
+                <a class="student-card-link" href="student.php?studentID=<?= $result["studentID"]?>">
+					<div class="student-card">
+						<div class="student-card-img">
+							<img class="img-1" src="<?php if($result["photo_path"] == null){
+								echo "../.." . "/e-dnevnik/assets/user_images/default_user_image.png";
+							} else {
+								echo "../.." . $result["photo_path"];
+							}
+							?>" alt="" />
+						</div>
+						<div class="student-card-text">
+							<h2><?=$result["name"] . " " . $result["surname"]?></h2>
+						</div>
+					</div>
+				</a>
+            <?php endforeach;?>
+        </div>
     </div>
 </body>
 </html>

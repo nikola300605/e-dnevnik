@@ -1,38 +1,49 @@
 <?php
     require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/config/config.php";
+    require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/classes/Odeljenje.php";
 
     if(!isset($_SESSION['adminID'])){
         header('location: '. $_SERVER['DOCUMENT_ROOT'].'/e-dnevnik/index.php');
         exit();
     }
     $razredID = (int)$_GET['razredID'];
-    $sql = "SELECT * FROM odeljenje INNER JOIN razred on odeljenje.razredID = razred.razredID WHERE odeljenje.razredID = ?";
-    $run = $conn->prepare($sql);
-    $run->bind_param('i',$razredID);
-    $run -> execute();
+    $odeljenje = new Odeljenje();
 
-    $results = $run->get_result();
-    $results = $results->fetch_all(MYSQLI_ASSOC);
+    $results = $odeljenje->getOdeljenje($razredID);
+    
 ?>
 
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../admin_css/admin.css">
+    <link rel="stylesheet" href="../admin_css/admin_show.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar">
-        <img src="../../assets/site_images/esdnevnik-logo.png" alt="Es Dnevnik Logo" class="logo">
-        <div class="logout-wrap">
-            <form action="/e-dnevnik/sign_out.php" method="post" class="log-out">
-                <button class="log-out-button">Log out</button>
-            </form>
-        </div>
-    </nav>
+    <header>
+        <nav>
+            <div class="navbar-container">
+                <div class="logo">
+                    <img src="/e-dnevnik/assets/site_images/esdnevnik-logo.png" alt="">
+                </div>
+                <div class="menu">
+                    <a href="../add_pages/add_student.php?razredID=<?=$razredID?>" target="_self" rel="noopener noreferrer" class="nav-link">
+                        <div class="menu-div">
+                            Add student
+                        </div>
+                    </a>
+                    <a href="/e-dnevnik/sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">
+                        <div class="menu-div">
+                            Log Out
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <section>
         <div class="container">

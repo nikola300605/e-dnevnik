@@ -1,14 +1,13 @@
 <?php 
     require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/config/config.php";
+    require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/classes/Razred.php";
 
     if(!isset($_SESSION['adminID'])){
         header('location: ../index.php');
         exit();
     } 
-
-    $sql = 'SELECT * FROM razred';
-    $run = $conn->query($sql);
-    $results = $run->fetch_all(MYSQLI_ASSOC);
+    $razred = new Razred();
+    $results = $razred->getRazred();
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +27,7 @@
                     <img src="/e-dnevnik/assets/site_images/esdnevnik-logo.png" alt="">
                 </div>
                 <div class="menu">
-                    <a href="# target="_self" rel="noopener noreferrer" class="nav-link">
+                    <a href="add_pages/add_student.php" target="_self" rel="noopener noreferrer" class="nav-link">
                         <div class="menu-div">
                             Add student
                         </div>
