@@ -7,7 +7,6 @@
 
     $student = new Student();
     $results = $student->getStudents($razredID);
-    var_dump($results);
 
 ?>
 
@@ -43,7 +42,26 @@
     </header>
 
     <div class="container">
-
+        <div class="student-card-wrapper">
+            <?php   
+                foreach ($results as $result) :?>
+                <a class="student-card-link" href="student.php?studentID=<?= $result["studentID"]?>">
+					<div class="student-card">
+						<div class="student-card-img">
+							<img class="img-1" src="<?php if($result["photo_path"] == null){
+								echo "../.." . "/e-dnevnik/assets/user_images/default_user_image.png";
+							} else {
+								echo "../.." . $result["photo_path"];
+							}
+							?>" alt="" />
+						</div>
+						<div class="student-card-text">
+							<h2><?=$result["name"] . " " . $result["surname"]?></h2>
+						</div>
+					</div>
+				</a>
+            <?php endforeach;?>
+        </div>
     </div>
 </body>
 </html>

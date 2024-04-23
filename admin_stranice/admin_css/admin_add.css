@@ -54,3 +54,128 @@ header{
 .nav-link:hover{
     background-color: #922C09;
 }
+
+form{
+    width: 100%;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 450px;
+    
+}
+
+.col input{
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: all .3s ease-in-out;
+    outline: none;
+    border: 1px solid #caced1;
+}
+
+.col-1 input{
+    margin-bottom: 40px;
+}
+
+.col input:focus{
+    outline: none;
+    border: 1px solid #58B9DA;
+}
+
+.col label{
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.col-2{
+    padding: 50px 70px 50px 70px;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.col-2 input{
+    margin-bottom: 20px;
+}
+
+select{
+    margin: 20px 0px 20px 0px;
+    font-size: 16px;
+    padding: 11px 96px 11px 16px;
+    width: 350px;
+    outline: none;
+    background-color: #fff;
+    border: 1px solid #caced1;
+    border-radius: 4px;
+    color: #000;
+    cursor: pointer;
+}
+
+.col-3{
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="submit"]{
+    color: #000;
+    font-size: 16px;
+    width: 200px;
+    background-color: #fff;
+    border: 1.5px solid #caced1;
+    border-radius: 4px;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover{
+    border: 1px solid #58B9DA;
+    font-weight: 500;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.profile-picture{
+    opacity: 0.75;
+    height: 250px;
+    width: 250px;
+    position: relative;
+    overflow: hidden;
+    background: url("../../assets/user_images/default_user_image.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 8px 6px -6px black;
+}
+
+.file-uploader {
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+
+.upload-icon {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: #ccc;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #bbb;
+  }
+
+.profile-picture:hover .upload-icon {
+    opacity: 1;
+}

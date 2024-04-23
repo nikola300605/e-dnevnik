@@ -79,7 +79,6 @@ body{
 	gap: 2rem;
 
 	margin: auto;
-	background-color: lightgray;
 }
 .student-card-link {
 	text-decoration: none;
@@ -92,7 +91,7 @@ body{
 	gap: 0.5rem;
 	border-radius: 1rem;
 	overflow: hidden;
-	box-shadow: 0 5px 10px black;
+	box-shadow: 0 2px 5px black;
     transition: transform .3s;
 	background-color: #f2f2f2;
     align-items: center;

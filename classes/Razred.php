@@ -16,4 +16,5 @@ class Razred{
 
         return $results;
     }
+
 }

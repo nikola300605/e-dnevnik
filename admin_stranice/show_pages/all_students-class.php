@@ -33,7 +33,7 @@
                     <img src="/e-dnevnik/assets/site_images/esdnevnik-logo.png" alt="">
                 </div>
                 <div class="menu">
-                    <a href="../add_pages/add_student.php?razredID=<?=$razredID?>&odeljenjeID=<?=$odeljenjeID?>" target="_self" rel="noopener noreferrer" class="nav-link">
+                    <a href="../add_pages/add_student.php?razredID=<?=$razredID?>&odeljenjeID=<?=$odeljenjeId?>" target="_self" rel="noopener noreferrer" class="nav-link">
                         <div class="menu-div">
                             Add student
                         </div>
