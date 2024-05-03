@@ -11,7 +11,10 @@
     $ocene = $ocena->getOcene($studentID);
     $predmet = new Predmet();
     $predmeti = $predmet->getPredmets();
-
+    $colspan = count($ocene);
+    $max_ocena = $ocena->getMaxOcenaCount($studentID);
+    $max_ocena = (int)$max_ocena['max'];
+    
 ?>
 
 
@@ -59,35 +62,40 @@
                                 ?>)" >
                     
 				</div>
-                <div class="name-text">
+                <h1 class="name-text">
                     <?=$student['name'] . " " . $student['surname'];?>
-                </div>
+                </h1>
             </div>
             <div class="col table-wrapper">
                 <table class="ocene-table">
                     <thead>
                         <th>Predmet</th>
-                        <th>Ocene</th>
+                        <th colspan="<?=json_encode($colspan)?>">Ocene</th>
                     </thead>
                     <tbody>
                         <?php for($i = 0; $i < count($predmeti); $i++):?>
-                            <tr onclick="window.location.href ='../admin_dashboard.php'">
+                            <?php 
+                                $temp_max_ocena = $max_ocena;
+                            ?>
+                            <?php $flag = 0;?>
+                            <tr>
                                 <td><?=$predmeti[$i]["predmet_name"]?></td>
                                 <?php for($j = 0; $j < count($ocene); $j++):?>
                                     <?php if($predmeti[$i]["predmetID"] == $ocene[$j]["predmetID"]):?>
-                                        <td><?=$ocene[$j]["vrednost"]?></td>
-                                    <?php else:?>
-                                        <td></td>
+                                        <?php $temp_max_ocena-=1?>
+                                        <td style="--opis_ocene: '<?=$ocene[$j]['opis']?>'" class="ocena-td"><?=$ocene[$j]["vrednost"]?></td>
                                     <?php endif;?>
-                                    
-
                                 <?php endfor;?>
                                 
+                                <?php for($j = 0; $j < $temp_max_ocena; $j++):?>
+                                    <td></td>
+                                <?php endfor?>
+                            
+                            
                             </tr>
                         <?php endfor;?>
                     </tbody>
                 </table>
-                
             </div>
         </div>
     </div>

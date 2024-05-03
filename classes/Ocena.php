@@ -9,7 +9,7 @@ class Ocena {
     }
 
     public function getOcene($studentID){
-        $sql = "SELECT * FROM ocena WHERE studentID = ?";
+        $sql = "SELECT * FROM ocena WHERE studentID = ? ORDER BY predmetID ASC";
         $run = $this->conn->prepare($sql);
         $run->bind_param('i', $studentID);
         $run->execute();
@@ -34,6 +34,18 @@ class Ocena {
         $run->bind_param("issii", $vrednost, $ime, $opis, $predmetID, $studentID);
 
 
-        return $run->execute();;
+        return $run->execute();
+    }
+
+    public function getMaxOcenaCount($studentID){
+        $sql = "SELECT MAX(predmetCount) AS max FROM (SELECT COUNT(predmetID) as predmetCount FROM ocena WHERE studentID = ? GROUP BY predmetID) AS counts;";
+        $run = $this->conn->prepare($sql);
+        $run->bind_param("i",$studentID);
+
+        $run->execute();
+        $result = $run->get_result();
+        $result = $result->fetch_assoc();
+
+        return $result;
     }
 }

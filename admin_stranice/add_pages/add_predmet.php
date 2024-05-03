@@ -68,8 +68,8 @@
     ?>
 
     <script>
-        if(true){
-            document.querySelector(".error").innerHTML = "Greska";
+        if(<?=json_encode($err)?>){
+            document.querySelector(".error").innerHTML = <?=json_encode($resp)?>;
             document.querySelector(".error").style.display="flex";
         }
     </script>

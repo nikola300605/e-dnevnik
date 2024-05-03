@@ -22,7 +22,7 @@ class Predmet{
         $run = $this->conn->query($sql);
         $results = $run->fetch_all(MYSQLI_ASSOC);
         foreach($results as $result){
-            if($result['predmet_name'] == $predmet_name){
+            if(strtolower($result['predmet_name']) == strtolower($predmet_name)){
                 $flag = true;
             }
         }

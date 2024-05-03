@@ -130,7 +130,7 @@ body{
 .name-text{
     text-align: center;
     margin-top: 20px;
-    font-size: 18px;
+    text-transform: capitalize;
 }
 .navbar-container{
     max-width: 85%;
@@ -202,19 +202,20 @@ header{
 }
 
 .ocene-table td {
-    border-right: 1px solid #EFE6F0;
+    border-right: rgba(0, 0, 0, 0.1) 1px solid;
     font-size: 12px;
 }
 
-.ocene-table thead th {
+.ocene-table thead th:first-child {
     color: #ffffff;
-    background: #4FC3A1;
+    background: #324960;
+    
 }
 
 
-.ocene-table thead th:nth-child(odd) {
+.ocene-table thead th:nth-child(2) {
     color: #ffffff;
-    background: #324960;
+    background: #4FC3A1;
 }
 
 .ocene-table tr{
@@ -223,4 +224,25 @@ header{
 
 .ocene-table tr:nth-child(even) {
     background: #F8F8F8;
+}
+
+.ocena-td{
+    position: relative;
+}
+
+.ocena-td:hover::before{
+    content: var(--opis_ocene);
+    position: absolute;
+    top: -100%;
+    --b: 2em; 
+    --h: 1em; 
+
+    border-image: fill 0 / var(--h)
+    conic-gradient(#CC333F 0 0);
+    clip-path: 
+    polygon(0 100%, 0 0, 100% 0, 100% 100%,
+      calc(50% + var(--b) / 2) 100%,
+      50% calc(100% + var(--h)),
+      calc(50% - var(--b) / 2) 100%);
+
 }
