@@ -1,6 +1,6 @@
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/config/config.php";
-    require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/classes/Odeljenje.php";
+    require_once "../../config/config.php";
+    require_once "../../classes/Odeljenje.php";
 
     if(!isset($_SESSION['adminID'])){
         header('location: '. $_SERVER['DOCUMENT_ROOT'].'/e-dnevnik/index.php');
@@ -26,13 +26,20 @@
     <header>
         <nav>
             <div class="navbar-container">
-                <div class="logo">
-                    <img src="/e-dnevnik/assets/site_images/esdnevnik-logo.png" alt="">
-                </div>
+                <a href="../admin_dashboard.php">
+                    <div class="logo">
+                        <img src="/e-dnevnik/assets/site_images/esdnevnik-logo.png" alt="">
+                    </div>
+                </a>
                 <div class="menu">
-                    <a href="../add_pages/add_student.php?razredID=<?=$razredID?>" target="_self" rel="noopener noreferrer" class="nav-link">
+                    <a href="../add_pages/add_student.php" target="_self" rel="noopener noreferrer" class="nav-link">
                         <div class="menu-div">
                             Add student
+                        </div>
+                    </a>
+                    <a href="../add_pages/add_predmet.php" target="_self" rel="noopener noreferrer" class="nav-link">
+                        <div class="menu-div">
+                            Add predmet
                         </div>
                     </a>
                     <a href="/e-dnevnik/sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">

@@ -26,4 +26,5 @@ class Odeljenje {
             return $results;
         }
     }
+
 }

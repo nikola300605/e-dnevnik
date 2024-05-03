@@ -21,7 +21,6 @@ class Student{
             }
 
             else{
-                echo $razredID;
                 $sql = "SELECT * FROM student WHERE razredID = ?";
                 $run = $this->conn->prepare($sql);
                 $run->bind_param('i', $razredID);
@@ -34,7 +33,7 @@ class Student{
     }
 
     public function addStudent($name, $surname, $date_of_birth, $adress, $gender, $email, $parent_name, $razredID, $odeljenjeID, $photo_path){
-        $sql = "INSERT INTO student (name, surname, date_of_birth, address, gender, email, parent_name, razredID, odeljenjeID, photo_path)
+        $sql = "INSERT INTO student (name, surname, date_of_birth, adress, gender, email, parent_name, razredID, odeljenjeID, photo_path)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $run = $this->conn->prepare($sql);
@@ -45,5 +44,16 @@ class Student{
             return false;
         }
         else return true;
+    }
+
+    public function getStudent($studentID){
+        $sql = "SELECT * FROM student WHERE studentID =?";
+        $run = $this->conn->prepare($sql);
+        $run->bind_param("i",$studentID);
+        $run->execute();
+
+        $results = $run->get_result();
+        $results = $results->fetch_assoc();
+        return $results;
     }
 }

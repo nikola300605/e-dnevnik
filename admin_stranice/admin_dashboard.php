@@ -1,6 +1,6 @@
 <?php 
-    require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/config/config.php";
-    require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/classes/Razred.php";
+    require_once "../config/config.php";
+    require_once "../classes/Razred.php";
 
     if(!isset($_SESSION['adminID'])){
         header('location: ../index.php');
@@ -30,6 +30,11 @@
                     <a href="add_pages/add_student.php" target="_self" rel="noopener noreferrer" class="nav-link">
                         <div class="menu-div">
                             Add student
+                        </div>
+                    </a>
+                    <a href="add_pages/add_predmet.php" target="_self" rel="noopener noreferrer" class="nav-link">
+                        <div class="menu-div">
+                            Add predmet
                         </div>
                     </a>
                     <a href="/e-dnevnik/sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">

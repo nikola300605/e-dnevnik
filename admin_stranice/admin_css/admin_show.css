@@ -11,7 +11,7 @@ body{
     column-gap: 20px;
     align-items: center;
     flex-wrap: wrap;
-    padding: 10px;
+    padding: 20px;
     margin: auto !important;
 }
 
@@ -70,9 +70,13 @@ body{
     right: 0%;
 }
 
+.student-card-link{
+    text-decoration: none;
+}
+
 .student-card-wrapper {
-	width: 1200px;
-	height: 500px;
+	width: 100%;
+	height: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	place-items: center;
@@ -80,21 +84,18 @@ body{
 
 	margin: auto;
 }
-.student-card-link {
-	text-decoration: none;
-}
 .student-card {
 	width: 250px;
-	aspect-ratio: 8/7;
+    height: 250px;
+	aspect-ratio: 2/3;
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
 	border-radius: 1rem;
 	overflow: hidden;
-	box-shadow: 0 2px 5px black;
+	box-shadow: 0 5px 10px black;
     transition: transform .3s;
 	background-color: #f2f2f2;
-    align-items: center;
 }
 
 .student-card:hover{
@@ -104,23 +105,33 @@ body{
 .student-card-img {
 	width: 100%;
 	aspect-ratio: 3/2;
-	display: grid;
-	place-items: center;
-	overflow: hidden;
-}
-.student-card-img img {
-	width: 100%;
+	background-position: center;
+	background-size: cover;
 }
 
 .student-card-text {
 	display: flex;
 	flex-direction: column;
+    align-items: center;
+    justify-content: center     ;
+    font-size: 15px;
 	gap: 1rem;
 	padding-inline: 1rem;
     color: black;
 }
 
-
+.student-img{
+    background-position: center;
+	background-size: cover;
+    width: 250px;
+    height: 250px;
+    border-radius: 16px;
+}
+.name-text{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+}
 .navbar-container{
     max-width: 85%;
     margin: auto;
@@ -137,7 +148,6 @@ header{
 .menu{
     display: flex;
     flex-direction: row;
-    /*background-color: violet !important; */
 }
 
 .logo{
@@ -159,4 +169,58 @@ header{
 
 .nav-link:hover{
     background-color: #922C09;
+}
+
+.row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-wrapper{
+    flex-basis: 500px;
+    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+    margin: 10px 70px 70px;
+}
+
+.ocene-table{
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+}
+
+.ocene-table td, .ocene-table th {
+    text-align: center;
+    padding: 8px;
+}
+
+.ocene-table td {
+    border-right: 1px solid #EFE6F0;
+    font-size: 12px;
+}
+
+.ocene-table thead th {
+    color: #ffffff;
+    background: #4FC3A1;
+}
+
+
+.ocene-table thead th:nth-child(odd) {
+    color: #ffffff;
+    background: #324960;
+}
+
+.ocene-table tr{
+    cursor: pointer;
+}
+
+.ocene-table tr:nth-child(even) {
+    background: #F8F8F8;
 }

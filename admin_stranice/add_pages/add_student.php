@@ -1,8 +1,8 @@
 <?php 
-    require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/config/config.php";
-    require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/classes/Razred.php";
-    require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/classes/Odeljenje.php";
-    require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/classes/Student.php";
+    require_once "../../config/config.php";
+    require_once "../../classes/Razred.php";
+    require_once "../../classes/Odeljenje.php";
+    require_once "../../classes/Student.php";
 
     $razred = new Razred();
     $results = $razred->getRazred();
@@ -25,13 +25,15 @@
     <header>
         <nav>
             <div class="navbar-container">
-                <div class="logo">
-                    <img src="/e-dnevnik/assets/site_images/esdnevnik-logo.png" alt="">
-                </div>
+                <a href="../admin_dashboard.php">
+                    <div class="logo">
+                        <img src="/e-dnevnik/assets/site_images/esdnevnik-logo.png" alt="">
+                    </div>
+                </a>
                 <div class="menu">
-                    <a href="../add_pages/add_student.php?razredID=<?=$razredID?>&odeljenjeID=<?=$odeljenjeID?>" target="_self" rel="noopener noreferrer" class="nav-link">
+                    <a href="../admin_dashboard.php" target="_self" rel="noopener noreferrer" class="nav-link">
                         <div class="menu-div">
-                            Add student
+                            Admin Dashboard
                         </div>
                     </a>
                     <a href="/e-dnevnik/sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">
@@ -45,7 +47,7 @@
     </header>
 
     <div class="container">
-        <form action="upload_photo.php" method="post" class="student-form" enctype="multipart/form-data">
+        <form action="add_student_function.php" method="post" class="student-form" enctype="multipart/form-data">
             <div class="row row-1">
 
                 <div class="profile-picture">
@@ -58,27 +60,27 @@
 
                 <div class="col col-1">
                     <label for="name">Ime</label>
-                    <input type="text" name="name" id="name">
+                    <input type="text" name="name" id="name" required>
                     <label for="surname">Prezime</label>
-                    <input type="text" name="surname" id="surname">
+                    <input type="text" name="surname" id="surname" required>
                 </div>
             </div>
             <div class="col col-2">
                     <label for="date_of_birth">Datum rodjenja</label>
-                    <input type="date" name=date_of_birth"" id="dob">
+                    <input type="date" name="date_of_birth" id="dob" required>
                     <label for="adress">Adresa</label>
-                    <input type="text" name="adress" id="adress">
-                    <select name="gender" id="gender">
+                    <input type="text" name="adress" id="adress" required>
+                    <select name="gender" id="gender" required>
                         <option value="" disabled selected>Pol</option>
                         <option value="musko">Musko</option>
                         <option value="zensko">Zensko</option>
                     </select>
                     <label for="email">Email adresa</label>
-                    <input type="text" name="email" id="email">
+                    <input type="text" name="email" id="email" required>
                     <label for="parent-name">Ime roditelja</label>
-                    <input type="text" name="parent-name" id="parent-name">
+                    <input type="text" name="parent-name" id="parent-name" required>
 
-                    <select name="razredID" id="razred" onchange="javascript: dynamicDropdown(this.options[this.selectedIndex].value);">
+                    <select name="razredID" id="razred" onchange="javascript: dynamicDropdown(this.options[this.selectedIndex].value);" required>
                         <option value="" disabled selected>Razred</option>
                         <?php 
                             foreach ($results as $result) {
@@ -87,11 +89,11 @@
                         ?>
                     </select>
                     <script type="text/javascript" language="JavaScript">
-                        document.write('<select name="odeljenjeID" id="odeljenje"><option value="" disabled selected>Odeljenje</option></select>');
+                        document.write('<select name="odeljenjeID" id="odeljenje" required><option value="" disabled selected>Odeljenje</option></select>');
                     </script>
 
                     <noscript>
-                        <select name="subcategory" id="subcategory">
+                        <select name="odeljenjeID" id="odeljenje" required>
                             <option value="" disabled selected>Odeljenje</option>
                         </select>
                     </noscript>
@@ -99,6 +101,7 @@
 
             <div class="col col-3">
                  <input type="submit" value="Dodaj Studenta" class="submit">
+                 <div class="error"></div>
             </div>
         </form>
     </div>
@@ -130,16 +133,15 @@
         console.log(odeljenja);
         function dynamicDropdown(listindex){
             document.querySelector("#odeljenje").length = 0;
-            document.querySelector("#odeljenje").options[0] = new Option("Odeljenje:", "", true, );
+            document.querySelector("#odeljenje").options[0] = new Option("Odeljenje:", "", true);
 
             if(listindex){
-                let lookup = {};
                 let j = 1;
 
                 for (let i = 0; i < odeljenja.length; i++) {
                     if(odeljenja[i].razredID == listindex){
                         document.querySelector("#odeljenje").options[j] = new Option(odeljenja[i].name, odeljenja[i].odeljenjeID);
-                        j += 1;
+                        j = j+1;
                     }
                     
                 }
@@ -148,8 +150,23 @@
             return true;
         }
         
-        const form =document.querySelector('student-form');
-        const name =document.querySelector('student-form');
+        const form =document.querySelector('.student-form');
+        const email =document.querySelector('#email');
+        const error =document.querySelector('.error');
+
+        form.addEventListener('submit', (e)=>{
+            let message = "";
+            if(email.value.includes("@") == false){
+               message = "Email nije u dobroj formi!";
+            }
+            
+           if(message.length > 0){     
+                e.preventDefault();        
+                error.innerHTML = message;
+                error.style.display = "flex";
+            } 
+           
+        })
     </script>
 </body>
 </html>
