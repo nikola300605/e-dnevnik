@@ -218,9 +218,6 @@ header{
     background: #4FC3A1;
 }
 
-.ocene-table tr{
-    cursor: pointer;
-}
 
 .ocene-table tr:nth-child(even) {
     background: #F8F8F8;
@@ -228,21 +225,59 @@ header{
 
 .ocena-td{
     position: relative;
+    cursor: pointer;
 }
 
-.ocena-td:hover::before{
+.ocena-td::before {
     content: var(--opis_ocene);
+    background: #333333;
+    color: #ffffff;
+    cursor: pointer;
+    opacity: 0;
+    padding: 5px;
     position: absolute;
-    top: -100%;
-    --b: 2em; 
-    --h: 1em; 
+    text-align: center;
+    visibility: hidden;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -ms-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    transition: all 0.25s;
+  
+    bottom: calc(100% + 16px);
+    height: inherit;
+    left: 50%;
+    transform: translateX(-50%);
+    top: auto;
+    width: 200%;
+  }
 
-    border-image: fill 0 / var(--h)
-    conic-gradient(#CC333F 0 0);
-    clip-path: 
-    polygon(0 100%, 0 0, 100% 0, 100% 100%,
-      calc(50% + var(--b) / 2) 100%,
-      50% calc(100% + var(--h)),
-      calc(50% - var(--b) / 2) 100%);
+.ocena-td::after {
+    border: 8px solid transparent;
+    border-top-color: #333333;
+    bottom: 100%;
+    content: "";
+    height: 0px;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    width: 0px;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -ms-transition: all 0.25s;
+    -o-transition: all 0.25s;
+    transition: all 0.25s;
+}
 
+.ocena-td:hover::before,
+.ocena-td:hover::after {
+  opacity: 1;
+  visibility: visible;
 }

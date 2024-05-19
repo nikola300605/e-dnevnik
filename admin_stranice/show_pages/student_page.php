@@ -53,7 +53,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="">
                 <div class="student-img" style="background-image: url(<?php if($student["photo_path"] == null){
                                     echo "../.." . "/e-dnevnik/assets/user_images/default_user_image.png";
                                 } else {
@@ -66,7 +66,7 @@
                     <?=$student['name'] . " " . $student['surname'];?>
                 </h1>
             </div>
-            <div class="col table-wrapper">
+            <div class="table-wrapper">
                 <table class="ocene-table">
                     <thead>
                         <th>Predmet</th>
@@ -83,7 +83,7 @@
                                 <?php for($j = 0; $j < count($ocene); $j++):?>
                                     <?php if($predmeti[$i]["predmetID"] == $ocene[$j]["predmetID"]):?>
                                         <?php $temp_max_ocena-=1?>
-                                        <td style="--opis_ocene: '<?=$ocene[$j]['opis']?>'" class="ocena-td"><?=$ocene[$j]["vrednost"]?></td>
+                                        <td><div style="--opis_ocene: '<?=$ocene[$j]['opis']?>'" class="ocena-td"><?=$ocene[$j]["vrednost"]?></div></td>
                                     <?php endif;?>
                                 <?php endfor;?>
                                 
@@ -96,6 +96,10 @@
                         <?php endfor;?>
                     </tbody>
                 </table>
+            </div>
+
+            <div class="col">
+                
             </div>
         </div>
     </div>
