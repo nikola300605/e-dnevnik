@@ -14,7 +14,6 @@
     $colspan = count($ocene);
     $max_ocena = $ocena->getMaxOcenaCount($studentID);
     $max_ocena = (int)$max_ocena['max'];
-    
 ?>
 
 
@@ -83,7 +82,7 @@
                                 <?php for($j = 0; $j < count($ocene); $j++):?>
                                     <?php if($predmeti[$i]["predmetID"] == $ocene[$j]["predmetID"]):?>
                                         <?php $temp_max_ocena-=1?>
-                                        <td><div style="--opis_ocene: '<?=$ocene[$j]['opis']?>'" class="ocena-td"><?=$ocene[$j]["vrednost"]?></div></td>
+                                        <td onclick="window.location.href='../delete_ocena.php?ocenaID=<?=$ocene[$j]['ocenaID']?>&studentID=<?=$studentID?>'"><div style="--opis_ocene: '<?=$ocene[$j]['opis']?>'" class="ocena-td"><?=$ocene[$j]["vrednost"]?></div></td>
                                     <?php endif;?>
                                 <?php endfor;?>
                                 

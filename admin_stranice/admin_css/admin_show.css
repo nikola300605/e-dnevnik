@@ -225,7 +225,7 @@ header{
 
 .ocena-td{
     position: relative;
-    cursor: pointer;
+    cursor: url("/e-dnevnik/assets/site_images/delete.png"), auto;
 }
 
 .ocena-td::before {

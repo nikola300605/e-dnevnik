@@ -9,8 +9,6 @@
         $resp = false;
         $err = "";
     }
-
-    
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +18,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
     <title>Document</title>
+
+    
 </head>
+
+
 <body>
     <section class="hero-section">
         <div class="blur-cover">
@@ -30,13 +32,13 @@
                         <div class="title-wrap">
                             <h2>moj</h2>
                             <h1>E-Dnevnik</h1>
-                            <h2>portal za učenike i roditelje</h2>
+                            <h2>Admin login</h2>
                         </div>
                     </div>
                     <div class="col col-5">
                         <div class="form-wrapper">                          
                             <h3 class="prijava">Prijava</h3>
-                            <span class="subtitle">nalogom iz e-Dnevnika</span>
+                            <span class="subtitle">za admine</span>
 
                             <form action="login_func/login.php" method="post" class="login-form" id="login-form">
                                     <div class="form-element">
@@ -45,17 +47,17 @@
                                     </div>
                                     <div class="form-element">
                                         <label for="password">Lozinka</label>
-                                        <input type="password" name="password" id="password" spellcheck="false">
+                                        <input type="password" name="password" id="password">
                                     </div>
                                     
                                     <div class="button-wrapper">
-                                        <a href="admin_login.php" class="admin-login">Admin login</a>
+                                        <a href="index.php" class="admin-login">Login za ucenike</a>
                                         <input type="submit" value="prijavi se" class="prijavi-dugme">
                                     </div>
+
                                     <div class="error-box" id="error-box">
                                         <p id="err-text"></p>
                                     </div>
-                                   
                                 </form>                           
                         </div>
                     </div>
@@ -63,6 +65,7 @@
             </div>
         </div>
     </section>
+
     <script>
         var resp = <?php echo json_encode($resp);?> ;
         console.log(resp);
@@ -74,3 +77,4 @@
     </script>
 </body>
 </html>
+

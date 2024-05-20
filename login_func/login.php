@@ -5,7 +5,7 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $sql = "SELECT userID, password FROM user WHERE username = ?";
+        $sql = "SELECT adminID, password FROM admin WHERE username = ?";
 
         $run = $conn->prepare($sql);
         $run->bind_param('s', $username);
@@ -14,29 +14,29 @@
         $results = $run->get_result();
 
         if($results->num_rows == 1){
-            $user = $results->fetch_assoc();
+            $admin = $results->fetch_assoc();
 
-            if(password_verify($password,$user['password'])){
-                $_SESSION['userID'] = $user['userID'];
+            if(password_verify($password,$admin['password'])){
+                $_SESSION['adminID'] = $admin['adminID'];
 
                 $conn->close();
-                #header('Location: ../user_stranice/user_dashboard.php');
+                header('Location: ../admin_stranice/admin_dashboard.php');
                 exit();
             }
 
             else{
-                $_SESSION['error_message'] = 'Pogresna lozinka';
+                $_SESSION['admin_error_message'] = 'Pogresna lozinka';
 
                 $conn->close();
-                #header('Location: ../index.php');
+                header('Location: ../admin_login.php');
                 exit();
             }
         }
         else{
-            $_SESSION['error_message'] = 'Pogresno korisnicko ime';
+            $_SESSION['admin_error_message'] = 'Pogresno korisnicko ime';
+
             $conn->close();
-            header('Location: ../index.php');
+            header('Location: ../admin_login.php');
             exit();
         }
-
     }

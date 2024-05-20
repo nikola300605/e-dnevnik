@@ -48,4 +48,12 @@ class Ocena {
 
         return $result;
     }
+
+    public function deleteOcena($ocenaID){
+        $sql = "DELETE FROM ocena WHERE ocenaID = ?";
+        $run = $this->conn->prepare($sql);
+        $run->bind_param('i',$ocenaID);
+
+        $run->execute();
+    }
 }

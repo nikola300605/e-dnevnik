@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 11, 2023 at 07:14 PM
+-- Generation Time: May 20, 2024 at 09:47 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -50,11 +50,31 @@ INSERT INTO `admin` (`adminID`, `username`, `password`, `created_at`) VALUES
 CREATE TABLE `ocena` (
   `ocenaID` int(11) NOT NULL,
   `vrednost` int(11) NOT NULL COMMENT '5,4,3,2,1',
-  `ime` int(11) NOT NULL COMMENT 'Odlican, Vrlo Dobar, ',
+  `ime` varchar(255) NOT NULL COMMENT 'Odlican, Vrlo Dobar, ',
   `opis` mediumtext NOT NULL COMMENT 'Opisite kako ste mu dali ocenu (test, odgovaranje ...)',
   `predmetID` int(11) NOT NULL,
-  `studentID` int(11) NOT NULL
+  `studentID` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ocena`
+--
+
+INSERT INTO `ocena` (`ocenaID`, `vrednost`, `ime`, `opis`, `predmetID`, `studentID`, `date`) VALUES
+(14, 2, 'dovoljan', 'Glup', 5, 31, '2024-05-03 12:16:00'),
+(15, 1, 'nedovoljan', 'Glup je ko kurac', 1, 32, '2024-05-03 17:36:26'),
+(16, 5, 'odličan', 'Mnogo pametan momak', 1, 33, '2024-05-03 17:40:07'),
+(17, 5, 'odličan', 'Pevao kad bi bio ranjen na casu sa drugaricom', 11, 33, '2024-05-03 17:40:22'),
+(21, 5, 'odličan', 'Nastavnica ga gotivi', 1, 31, '2024-05-03 19:38:10'),
+(22, 2, 'dovoljan', 'Nastavnica ga ne gotivi', 2, 31, '2024-05-03 19:38:27'),
+(23, 5, 'odličan', 'Test', 4, 30, '2024-05-03 19:38:43'),
+(24, 4, 'vrlodobar', 'Test', 7, 1, '2024-05-06 16:11:41'),
+(25, 5, 'odličan', 'Test', 1, 1, '2024-05-20 09:37:58'),
+(27, 2, 'dovoljan', 'Ne slusa na casu', 3, 1, '2024-05-20 09:45:37'),
+(28, 3, 'dobar', 'Kontrolni', 6, 1, '2024-05-20 09:45:46'),
+(29, 5, 'odličan', 'Odgovaranje', 4, 1, '2024-05-20 09:45:58'),
+(30, 5, 'odličan', 'Popravio ocenu', 6, 1, '2024-05-20 09:46:08');
 
 -- --------------------------------------------------------
 
@@ -91,9 +111,25 @@ INSERT INTO `odeljenje` (`odeljenjeID`, `name`, `razredID`, `int_code`) VALUES
 
 CREATE TABLE `predmet` (
   `predmetID` int(11) NOT NULL,
-  `predmet_name` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL
+  `predmet_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `predmet`
+--
+
+INSERT INTO `predmet` (`predmetID`, `predmet_name`) VALUES
+(1, 'Matematika'),
+(2, 'Srpski'),
+(3, 'Engleski'),
+(4, 'Informatika'),
+(5, 'Geografija'),
+(6, 'Istorija'),
+(7, 'Nemacki'),
+(9, 'Hemija'),
+(10, 'Fizika'),
+(11, 'Muzicko'),
+(12, 'Likovno');
 
 -- --------------------------------------------------------
 
@@ -135,6 +171,17 @@ CREATE TABLE `student` (
   `odeljenjeID` int(11) DEFAULT NULL,
   `photo_path` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `student`
+--
+
+INSERT INTO `student` (`studentID`, `name`, `surname`, `date_of_birth`, `adress`, `gender`, `email`, `parent_name`, `razredID`, `odeljenjeID`, `photo_path`) VALUES
+(1, 'Viktor', 'Pešić', '2006-10-04', 'Bulevar Kralja Aleksandra 162', 'M', 'viktor.pesic@gmail.com', 'Milan', 1, 2, 'viktor_pesic.jpg'),
+(30, 'Vladimir', 'Vrhovski', '2005-10-19', 'Stevana Jakovljevica 18', 'musko', 'vladimir@vrhovski.com', 'Mirjana', 2, 8, 'Vladimir_Vrhovski.jpeg'),
+(31, 'Viktor', 'Rasic', '2005-12-23', 'Kursulina 54', 'musko', 'viktor@rasic.com', 'Igor', 2, 8, 'Viktor_Rasic.jpeg'),
+(32, 'Zarko', 'Barlov', '2005-04-11', 'Anastasa Jovanovica 2', 'musko', 'zarko@barlov.com', 'Sladjana', 2, 8, 'Zarko_Barlov.jpeg'),
+(33, 'Nemanja', 'Nikolic', '2005-06-19', 'Sumatovacka 29', 'musko', 'necasrbpvp90@gmail.com', 'Srboljub', 2, 8, 'Nemanja_Nikolic.jpeg');
 
 -- --------------------------------------------------------
 
@@ -216,7 +263,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `ocena`
 --
 ALTER TABLE `ocena`
-  MODIFY `ocenaID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ocenaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `odeljenje`
@@ -228,7 +275,7 @@ ALTER TABLE `odeljenje`
 -- AUTO_INCREMENT for table `predmet`
 --
 ALTER TABLE `predmet`
-  MODIFY `predmetID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `predmetID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `razred`
@@ -240,7 +287,7 @@ ALTER TABLE `razred`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `studentID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `user`
