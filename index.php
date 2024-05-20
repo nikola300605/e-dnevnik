@@ -51,7 +51,6 @@
                                     </div>
                                     
                                     <div class="button-wrapper">
-                                        <a href="index.php" class="admin-login">Login za ucenike</a>
                                         <input type="submit" value="prijavi se" class="prijavi-dugme">
                                     </div>
 
