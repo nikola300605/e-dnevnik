@@ -28,7 +28,7 @@
                 $_SESSION['admin_error_message'] = 'Pogresna lozinka';
 
                 $conn->close();
-                header('Location: ../admin_login.php');
+                header('Location: ../index.php');
                 exit();
             }
         }
@@ -36,7 +36,7 @@
             $_SESSION['admin_error_message'] = 'Pogresno korisnicko ime';
 
             $conn->close();
-            header('Location: ../admin_login.php');
+            header('Location: ../index.php');
             exit();
         }
     }

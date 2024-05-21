@@ -1,9 +1,9 @@
-<?php
+<?php 
     require_once "../../config/config.php";
-    require_once "../../classes/Predmet.php";
+    require_once "../../classes/Odeljenje.php";
 
-    $predmet = new Predmet();
-
+    $odeljenje = new Odeljenje();
+    $razredID = $_GET['razredID']
 ?>
 
 <!DOCTYPE html>
@@ -11,9 +11,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="../admin_css/admin_add.css">
-    <script src="https://use.fontawesome.com/fe459689b4.js"></script>
+    <title>Document</title>
 </head>
 <body>
     <header>
@@ -46,22 +45,23 @@
     </header>
 
     <div class="container">
-        <h1>Dodajte predmet</h1>
+        <h1>Dodajte odeljenje</h1>
         <form action="" method="post">
             <div class="col col-1">
-                <label for="predmet">Ime predmeta</label>
-                <input type="text" name="predmet_name" id="predmet">
+                <label for="predmet">Broj odeljenja</label>
+                <input type="number" name="int_code" id="int_code" max="8" min="1">
             </div>
             <div class="col col-3">
-                 <input type="submit" value="Dodaj predmet" class="submit">
+                 <input type="submit" value="Dodaj odeljenje" class="submit">
                  <div class="error"></div>
             </div>
         </form>
     </div>
     <?php 
         if($_SERVER['REQUEST_METHOD'] == "POST"){
-            $predmet_name = $_POST['predmet_name'];
-            $resp = $predmet->addPredmet($predmet_name);
+            $int_code = (int) $_POST['int_code'];
+
+            $resp = $odeljenje->addOdeljenje($razredID,$int_code);
             $err;
             if(is_null($resp)){
                 $err = false;
@@ -80,4 +80,5 @@
         }
     </script>
 </body>
+
 </html>

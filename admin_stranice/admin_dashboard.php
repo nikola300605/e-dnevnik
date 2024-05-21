@@ -24,7 +24,7 @@
         <nav>
             <div class="navbar-container">
                 <div class="logo">
-                    <img src="/e-dnevnik/assets/site_images/esdnevnik-logo.png" alt="">
+                    <img src="../assets/site_images/esdnevnik-logo.png" alt="">
                 </div>
                 <div class="menu">
                     <a href="add_pages/add_student.php" target="_self" rel="noopener noreferrer" class="nav-link">
@@ -37,7 +37,7 @@
                             Add predmet
                         </div>
                     </a>
-                    <a href="/e-dnevnik/sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">
+                    <a href="../sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">
                         <div class="menu-div">
                             Log Out
                         </div>
@@ -57,7 +57,7 @@
                         <h2 class="grade-name"><?php echo $result['ime'] . ' Razred'?></h2>
                         <div class="icon-button">
                             <a href="show_pages/all_students_grade.php?razredID=<?php echo $result['razredID']?>" class="icon-link"> </a>
-                            <img src="/e-dnevnik/assets/site_images/group.png" alt=""> 
+                            <img src="../assets/site_images/group.png" alt=""> 
                         </div>                            
                     </div>
             <?php endforeach;?>           

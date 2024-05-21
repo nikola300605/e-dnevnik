@@ -56,4 +56,14 @@ class Student{
         $results = $results->fetch_assoc();
         return $results;
     }
+
+    public function deleteStudent($studentID){
+        $sql = "DELETE FROM student WHERE studentID = ?";
+        $run = $this->conn->prepare($sql);
+        $run->bind_param('i',$studentID);
+
+        $run->execute();
+    }
+
+    
 }

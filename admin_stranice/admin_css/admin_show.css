@@ -7,7 +7,7 @@ body{
     max-width: 1200px;
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: center;
     column-gap: 20px;
     align-items: center;
     flex-wrap: wrap;
@@ -15,35 +15,43 @@ body{
     margin: auto !important;
 }
 
-.odeljenje-card{
-    flex: 0 0 15%;
+.naslov{
+    justify-self: center;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.odeljenje-wrap{
+    position: relative;
+    margin-bottom: 30px;
+    flex: 0 0 20%;
     border-radius: 10px;
     background-color: #F4EBF7;
-    position: relative;
     padding: 20px;
     box-shadow: -2px 4px 10px rgba(0, 0, 0, .2);
     transition: transform .3s;
+    position: relative;
 }
-
-.odeljenje-card:hover{
+.odeljenje-wrap:hover{
     transform: scale(1.05);
 }
+.trash-ikonica{
+    transition: transform .3s;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.trash-ikonica:hover{
+    transform: scale(1.25);
+}
+
+
 
 .odeljenje-name{
     margin-top: 10px;
     margin-bottom: 20px;
-}
-
-.odeljenje-link{
-    display: block;
-    position:absolute;
-    top: 0%;
-    bottom: 0%;
-    left: 0%;
-    right: 0%;
-    text-decoration: none;
-    color: black;
-    z-index: 100;
 }
 
 .icon-button{
@@ -150,6 +158,11 @@ header{
     flex-direction: row;
 }
 
+.logo-menu{
+    display: flex;
+    flex-direction: row;
+}
+
 .logo{
     padding: 10px 0 5px 0;
 }
@@ -225,7 +238,7 @@ header{
 
 .ocena-td{
     position: relative;
-    cursor: url("/e-dnevnik/assets/site_images/delete.png"), auto;
+    cursor: url("../../assets/site_images/delete.png"), auto;
 }
 
 .ocena-td::before {

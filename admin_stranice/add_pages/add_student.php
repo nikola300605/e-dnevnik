@@ -25,18 +25,23 @@
     <header>
         <nav>
             <div class="navbar-container">
-                <a href="../admin_dashboard.php">
-                    <div class="logo">
-                        <img src="/e-dnevnik/assets/site_images/esdnevnik-logo.png" alt="">
-                    </div>
-                </a>
+                <div class="logo-menu">
+                    <a href="../admin_dashboard.php" class="nav-link">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    </a>
+                    <a href="../admin_dashboard.php">
+                        <div class="logo">
+                            <img src="../../assets/site_images/esdnevnik-logo.png" alt="">
+                        </div>
+                    </a>
+                </div>
                 <div class="menu">
                     <a href="../admin_dashboard.php" target="_self" rel="noopener noreferrer" class="nav-link">
                         <div class="menu-div">
                             Admin Dashboard
                         </div>
                     </a>
-                    <a href="/e-dnevnik/sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">
+                    <a href="../../sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">
                         <div class="menu-div">
                             Log Out
                         </div>

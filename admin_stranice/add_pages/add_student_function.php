@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/config/config.php";
-require_once $_SERVER['DOCUMENT_ROOT']."/e-dnevnik/classes/Student.php";
+require_once "../../config/config.php";
+require_once "../../classes/Student.php";
 if(!$_SERVER['REQUEST_METHOD'] == 'POST'){
     header('Location: ../../index.php');
 }
@@ -18,7 +18,7 @@ $odeljenjeID = $_POST["odeljenjeID"];
 
 
 
-if(!isset($_FILES)){
+if($_FILES["student_image"]["name"] == ""){
     $photo_path = "../../assets/user_images/default_user_image.png";
 }
 else{
@@ -48,5 +48,6 @@ if($result){
 else{
     $_SESSION['error_message'] = "Greska pri dodavanju ucenika!";
 }
-header("Location: ../admin_dashboard.php");    
+header("Location: ../admin_dashboard.php");     
+
 

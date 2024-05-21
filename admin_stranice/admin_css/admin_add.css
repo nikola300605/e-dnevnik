@@ -34,6 +34,11 @@ header{
     /*background-color: violet !important; */
 }
 
+.logo-menu{
+    display: flex;
+    flex-direction: row;
+}
+
 .logo{
     padding: 10px 0 5px 0;
 }

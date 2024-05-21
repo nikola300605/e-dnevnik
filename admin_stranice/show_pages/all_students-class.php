@@ -1,18 +1,21 @@
 <?php 
     require_once "../../config/config.php";
     require_once "../../classes/Student.php";
+    require_once "../../classes/Odeljenje.php";
 
     if(!isset($_SESSION['adminID'])){
         header('location: '. $_SERVER['DOCUMENT_ROOT'].'/e-dnevnik/index.php');
         exit();
     }
     $razredID = (int) $_GET['razredID'];
-    $odeljenjeId = (int)$_GET['odeljenjeID'];
+    $odeljenjeID = (int)$_GET['odeljenjeID'];
     //echo $razredID . " " . $odeljenjeId . " ";
     $student = new Student();
-    $results = $student->getStudents($razredID,$odeljenjeId);
+    $results = $student->getStudents($razredID,$odeljenjeID);
+    $odeljenje = new Odeljenje();
+    $odeljenje = $odeljenje->getOdeljenje(null,$odeljenjeID);
 
-    //var_dump($results);
+
     
 ?>
 
@@ -24,16 +27,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../admin_css/admin_show.css">
+    <script src="https://use.fontawesome.com/fe459689b4.js"></script>
 </head>
 <body>
     <header>
         <nav>
             <div class="navbar-container">
-                <a href="../admin_dashboard.php">
-                    <div class="logo">
-                        <img src="/e-dnevnik/assets/site_images/esdnevnik-logo.png" alt="">
-                    </div>
-                </a>
+                <div class="logo-menu">
+                    <a href="odeljenja_godina.php?razredID=<?=$razredID?>" class="nav-link">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                    </a>
+                    <a href="../admin_dashboard.php">
+                        <div class="logo">
+                            <img src="../../assets/site_images/esdnevnik-logo.png" alt="">
+                        </div>
+                    </a>
+                </div>
                 <div class="menu">
                     <a href="../add_pages/add_student.php" target="_self" rel="noopener noreferrer" class="nav-link">
                         <div class="menu-div">
@@ -45,7 +54,7 @@
                             Add predmet
                         </div>
                     </a>
-                    <a href="/e-dnevnik/sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">
+                    <a href="../../sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">
                         <div class="menu-div">
                             Log Out
                         </div>
@@ -54,7 +63,7 @@
             </div>
         </nav>
     </header>
-
+    <h1 class="naslov"> <?=$razredID?>. <?=$odeljenje['int_code']?></h1>
     <div class="container">
         <div class="student-card-wrapper">
             <?php   
@@ -62,7 +71,7 @@
                 <a class="student-card-link" href="student_page.php?studentID=<?= $result["studentID"]?>">
 					<div class="student-card">
 						<div class="student-card-img" style="background-image: url(<?php if($result["photo_path"] == null){
-								echo "../.." . "/e-dnevnik/assets/user_images/default_user_image.png";
+								echo "../../assets/user_images/default_user_image.png";
 							} else {
 								echo "../../assets/user_images/" . $result["photo_path"];
 							}

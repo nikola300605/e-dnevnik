@@ -23,7 +23,7 @@
             <div class="navbar-container">
                 <a href="../admin_dashboard.php">
                     <div class="logo">
-                        <img src="/e-dnevnik/assets/site_images/esdnevnik-logo.png" alt="">
+                        <img src="../../assets/site_images/esdnevnik-logo.png" alt="">
                     </div>
                 </a>
                 <div class="menu">
@@ -32,7 +32,7 @@
                             Admin Dashboard
                         </div>
                     </a>
-                    <a href="/e-dnevnik/sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">
+                    <a href="../../sign_out.php" target="_self" rel="noopener noreferrer" class="nav-link">
                         <div class="menu-div">
                             Log Out
                         </div>
