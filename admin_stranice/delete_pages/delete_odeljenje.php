@@ -12,3 +12,4 @@ $odeljenjeID = (int) $_GET['odeljenjeID'];
 $odeljenje = new Odeljenje();
 $odeljenje->updateStudentOdeljenje($odeljenjeID);
 $odeljenje->deleteOdeljenje($odeljenjeID);
+header('location: ../admin_dashboard.php');

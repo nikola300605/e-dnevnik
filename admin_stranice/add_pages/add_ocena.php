@@ -65,7 +65,7 @@
                 <input type="text" name="opis" id="opis">
             </div>
             <div class="col col-3">
-                 <input type="submit" value="Dodaj Studenta" class="submit">
+                 <input type="submit" value="Dodaj Ocenu" class="submit">
                  <div class="error"></div>
             </div>
         </form>
